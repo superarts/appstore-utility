@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 /*
@@ -56,20 +57,13 @@ $a = file($filename);
 $array_sku = array();
 $array_name = array();
 $array_id = array();
-//	$data = array();
 
 for ($i = 1; $i < count($a); $i++)
 {
-	/*
-	echo "---- $i ----\n";
-	get_item($a[0], $i);
-	get_item($a[1], $i);
-	 */
 	$sku = get_item($a[$i], 2);
 	$name = get_item($a[$i], 6);
 	$id = get_item($a[$i], 19);
 
-	//	$data[count($data) + 1] = array($sku, $name, $id);
 	$array_sku[] = $sku;
 	$array_name[] = $name;
 	$array_id[] = $id;
@@ -77,15 +71,6 @@ for ($i = 1; $i < count($a); $i++)
 	//	echo "$i:\t$sku\t$name\t$id\n";
 }
 
-//	$data = array_unique($data);
-/*
-$array_sku = array_flip($array_sku);
-$array_sku = array_flip($array_sku);
-$array_name = array_flip($array_name);
-$array_name = array_flip($array_name);
-$array_id = array_flip($array_id);
-$array_id = array_flip($array_id);
- */
 $array_sku = array_unique($array_sku);
 $array_name = array_unique($array_name);
 $array_id = array_unique($array_id);
@@ -104,7 +89,6 @@ foreach ($array_sku as $i => $s)
 	$sku = get_name($sku);
 	$name = get_name($name);
 
-	//	echo "$sku-$name.txt: xxx $id\n";
 	exec("./get_appstore_review.perl $id > ./output/$sku-$name.txt");
 }
 
